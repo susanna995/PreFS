@@ -1,34 +1,26 @@
-public class PalindromesInAStringWithDuplicates {
-    public static boolean checkPal(String s)
-    {
-        StringBuilder sb=new StringBuilder(s);
-        sb.reverse();
-        String s1= sb.toString();
-//        System.out.println(s1);
-        if(s.equals(s1))
-        {
-            return true;
+public class OptimizedPalindromesInAStringWithDuplicates {
+
+    public static int CountPalcen(String s)
+    { int count=0;
+        int n=s.length();
+        for (int i = 0; i <n; i++) {
+            count+=PalCount(s,i,i);
+            count+=PalCount(s,i,i+1);
         }
-        return false;
+return count;
     }
-    public static int CountPal(String s)
+    public static int PalCount(String s,int l,int r)
     {
         int c=0;
-        int n=s.length();
-        for (int i = 0; i <n ; i++) {
-            for (int j = i+1; j <=n; j++) {
-                if(checkPal(s.substring(i,j)))
-                {
-                    System.out.println(s.substring(i,j));
-                    c++;
-                }
-            }
-
+        if(l>=0 && r<s.length() && s.charAt(l)==s.charAt(r))
+        {
+            c++;
+            l--;
+            r++;
         }
         return c;
     }
     public static void main(String[] args) {
-        System.out.println(CountPal(""));
-
+        System.out.println(CountPalcen("abcdef"));
     }
 }
